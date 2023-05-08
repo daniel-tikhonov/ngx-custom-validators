@@ -14,7 +14,7 @@ const NUMBER_VALIDATOR: any = {
   providers: [NUMBER_VALIDATOR]
 })
 export class NumberValidator implements Validator {
-  validate(c: AbstractControl): {[key: string]: any} {
+  validate(c: AbstractControl): {[key: string]: any} | null {
     return number(c);
   }
 }

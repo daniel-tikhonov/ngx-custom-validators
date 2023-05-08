@@ -16,10 +16,13 @@ const NOT_EQUAL_VALIDATOR: any = {
 export class NotEqualValidator implements Validator, OnInit, OnChanges {
   @Input() notEqual: any;
 
-  private validator: ValidatorFn;
-  private onChange: () => void;
+  private validator?: ValidatorFn;
+  private onChange?: () => void;
 
   ngOnInit() {
+    if (this.notEqual === undefined) {
+      throw new Error('Not equal input required.');
+    }
     this.validator = notEqual(this.notEqual);
   }
 
@@ -34,8 +37,8 @@ export class NotEqualValidator implements Validator, OnInit, OnChanges {
     }
   }
 
-  validate(c: AbstractControl): {[key: string]: any} {
-    return this.validator(c);
+  validate(c: AbstractControl): {[key: string]: any}| null {
+    return this.validator ? this.validator(c): null;
   }
 
   registerOnValidatorChange(fn: () => void): void {

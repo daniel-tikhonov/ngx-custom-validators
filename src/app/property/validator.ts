@@ -2,7 +2,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn, Validators } from '@ang
 import { isPresent } from '../util/lang';
 
 export const property = (value: string): ValidatorFn => {
-  return (control: AbstractControl): ValidationErrors => {
+  return (control: AbstractControl): ValidationErrors | null => {
 
     if (isPresent(Validators.required(control))) {
       return null;

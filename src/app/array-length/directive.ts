@@ -14,12 +14,14 @@ const ARRAY_LENGTH_VALIDATOR: any = {
   providers: [ARRAY_LENGTH_VALIDATOR]
 })
 export class ArrayLengthValidator implements Validator, OnInit, OnChanges {
-  @Input() arrayLength: number;
+  @Input() arrayLength?: number;
 
-  private validator: ValidatorFn;
-  private onChange: () => void;
-
+  private validator?: ValidatorFn;
+  private onChange?: () => void;
   ngOnInit() {
+    if (this.arrayLength === undefined) {
+      throw new Error('Array length input parameter required')
+    }
     this.validator = arrayLength(this.arrayLength);
   }
 
@@ -34,8 +36,8 @@ export class ArrayLengthValidator implements Validator, OnInit, OnChanges {
     }
   }
 
-  validate(c: AbstractControl): {[key: string]: any} {
-    return this.validator(c);
+  validate(c: AbstractControl): {[key: string]: any} | null {
+    return this.validator ? this.validator(c): null;
   }
 
   registerOnValidatorChange(fn: () => void): void {

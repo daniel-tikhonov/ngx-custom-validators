@@ -14,12 +14,15 @@ const LESS_THAN_EQUAL_VALIDATOR: any = {
   providers: [LESS_THAN_EQUAL_VALIDATOR]
 })
 export class LessThanEqualValidator implements Validator, OnInit, OnChanges {
-  @Input() lte: number;
+  @Input() lte?: number;
 
-  private validator: ValidatorFn;
-  private onChange: () => void;
+  private validator?: ValidatorFn;
+  private onChange?: () => void;
 
   ngOnInit() {
+    if (this.lte === undefined) {
+      throw new Error('Lte input required.');
+    }
     this.validator = lte(this.lte);
   }
 
@@ -34,8 +37,8 @@ export class LessThanEqualValidator implements Validator, OnInit, OnChanges {
     }
   }
 
-  validate(c: AbstractControl): {[key: string]: any} {
-    return this.validator(c);
+  validate(c: AbstractControl): {[key: string]: any}| null {
+    return this.validator ? this.validator(c): null;
   }
 
   registerOnValidatorChange(fn: () => void): void {

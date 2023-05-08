@@ -14,7 +14,7 @@ const BASE64_VALIDATOR: any = {
   providers: [BASE64_VALIDATOR]
 })
 export class Base64Validator implements Validator {
-  validate(c: AbstractControl): {[key: string]: any} {
+  validate(c: AbstractControl): {[key: string]: any} | null {
     return base64(c);
   }
 }

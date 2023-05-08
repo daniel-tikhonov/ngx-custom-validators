@@ -14,7 +14,7 @@ const CREDIT_CARD_VALIDATOR: any = {
   providers: [CREDIT_CARD_VALIDATOR]
 })
 export class CreditCardValidator implements Validator {
-  validate(c: AbstractControl): {[key: string]: any} {
+  validate(c: AbstractControl): {[key: string]: any} | null {
     return creditCard(c);
   }
 }

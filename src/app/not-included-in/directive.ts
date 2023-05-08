@@ -14,12 +14,15 @@ const NOT_INCLUDED_IN_VALIDATOR: any = {
   providers: [NOT_INCLUDED_IN_VALIDATOR]
 })
 export class NotIncludedInValidator implements Validator, OnInit, OnChanges {
-  @Input() notIncludedIn: Array<any>;
+  @Input() notIncludedIn?: Array<any>;
 
-  private validator: ValidatorFn;
-  private onChange: () => void;
+  private validator?: ValidatorFn;
+  private onChange?: () => void;
 
   ngOnInit() {
+    if (this.notIncludedIn === undefined) {
+      throw new Error('Not included in input required.');
+    }
     this.validator = notIncludedIn(this.notIncludedIn);
   }
 
@@ -34,8 +37,8 @@ export class NotIncludedInValidator implements Validator, OnInit, OnChanges {
     }
   }
 
-  validate(c: AbstractControl): {[key: string]: any} {
-    return this.validator(c);
+  validate(c: AbstractControl): {[key: string]: any}| null {
+    return this.validator ? this.validator(c): null;
   }
 
   registerOnValidatorChange(fn: () => void): void {

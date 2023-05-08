@@ -2,7 +2,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn, Validators } from '@ang
 import { isPresent } from '../util/lang';
 
 export const includedIn = (includedInArr: Array<any>): ValidatorFn => {
-  return (control: AbstractControl): ValidationErrors => {
+  return (control: AbstractControl): ValidationErrors | null => {
     if (!isPresent(includedInArr)) {
       return null;
     }

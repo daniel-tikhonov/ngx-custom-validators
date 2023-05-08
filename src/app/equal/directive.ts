@@ -16,8 +16,8 @@ const EQUAL_VALIDATOR: any = {
 export class EqualValidator implements Validator, OnInit, OnChanges {
   @Input() equal: any;
 
-  private validator: ValidatorFn;
-  private onChange: () => void;
+  private validator?: ValidatorFn;
+  private onChange?: () => void;
 
   ngOnInit() {
     this.validator = equal(this.equal);
@@ -34,8 +34,8 @@ export class EqualValidator implements Validator, OnInit, OnChanges {
     }
   }
 
-  validate(c: AbstractControl): {[key: string]: any} {
-    return this.validator(c);
+  validate(c: AbstractControl): {[key: string]: any} | null {
+    return this.validator ? this.validator(c): null;
   }
 
   registerOnValidatorChange(fn: () => void): void {

@@ -14,12 +14,15 @@ const NOT_MATCHING_VALIDATOR: any = {
   providers: [NOT_MATCHING_VALIDATOR]
 })
 export class NotMatchingValidator implements Validator, OnInit, OnChanges {
-  @Input() notMatching: string | RegExp;
+  @Input() notMatching?: string | RegExp;
 
-  private validator: ValidatorFn;
-  private onChange: () => void;
+  private validator?: ValidatorFn;
+  private onChange?: () => void;
 
   ngOnInit() {
+    if (this.notMatching === undefined) {
+      throw new Error('Not matching input required.');
+    }
     this.validator = notMatching(this.notMatching);
   }
 
@@ -34,8 +37,8 @@ export class NotMatchingValidator implements Validator, OnInit, OnChanges {
     }
   }
 
-  validate(c: AbstractControl): {[key: string]: any} {
-    return this.validator(c);
+  validate(c: AbstractControl): {[key: string]: any}| null {
+    return this.validator ? this.validator(c): null;
   }
 
   registerOnValidatorChange(fn: () => void): void {

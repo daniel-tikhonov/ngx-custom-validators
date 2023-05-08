@@ -14,12 +14,15 @@ const RANGE_VALIDATOR: any = {
   providers: [RANGE_VALIDATOR]
 })
 export class RangeValidator implements Validator, OnInit, OnChanges {
-  @Input() range: [number];
+  @Input() range?: [number];
 
-  private validator: ValidatorFn;
-  private onChange: () => void;
+  private validator?: ValidatorFn;
+  private onChange?: () => void;
 
   ngOnInit() {
+    if (this.range === undefined) {
+      throw new Error('Range input required.');
+    }
     this.validator = range(this.range);
   }
 
@@ -34,8 +37,8 @@ export class RangeValidator implements Validator, OnInit, OnChanges {
     }
   }
 
-  validate(c: AbstractControl): {[key: string]: any} {
-    return this.validator(c);
+  validate(c: AbstractControl): {[key: string]: any}| null {
+    return this.validator ? this.validator(c): null;
   }
 
   registerOnValidatorChange(fn: () => void): void {

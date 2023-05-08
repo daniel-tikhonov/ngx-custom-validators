@@ -14,12 +14,15 @@ const MAX_VALIDATOR: any = {
   providers: [MAX_VALIDATOR]
 })
 export class MaxValidator implements Validator, OnInit, OnChanges {
-  @Input() max: number;
+  @Input() max?: number;
 
-  private validator: ValidatorFn;
-  private onChange: () => void;
+  private validator?: ValidatorFn;
+  private onChange?: () => void;
 
   ngOnInit() {
+    if (this.max === undefined) {
+      throw new Error('Max input required.');
+    }
     this.validator = max(this.max);
   }
 
@@ -34,8 +37,8 @@ export class MaxValidator implements Validator, OnInit, OnChanges {
     }
   }
 
-  validate(c: AbstractControl): {[key: string]: any} {
-    return this.validator(c);
+  validate(c: AbstractControl): {[key: string]: any}| null {
+    return this.validator ? this.validator(c): null;
   }
 
   registerOnValidatorChange(fn: () => void): void {

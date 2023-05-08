@@ -14,12 +14,15 @@ const MIN_DATE_VALIDATOR: any = {
   providers: [MIN_DATE_VALIDATOR]
 })
 export class MinDateValidator implements Validator, OnInit, OnChanges {
-  @Input() minDate;
+  @Input() minDate: any;
 
-  private validator: ValidatorFn;
-  private onChange: () => void;
+  private validator?: ValidatorFn;
+  private onChange?: () => void;
 
   ngOnInit() {
+    if (this.minDate === undefined) {
+      throw new Error('Min date input required.');
+    }
     this.validator = minDate(this.minDate);
   }
 
@@ -34,8 +37,8 @@ export class MinDateValidator implements Validator, OnInit, OnChanges {
     }
   }
 
-  validate(c: AbstractControl): {[key: string]: any} {
-    return this.validator(c);
+  validate(c: AbstractControl): {[key: string]: any}| null {
+    return this.validator ? this.validator(c): null;
   }
 
   registerOnValidatorChange(fn: () => void): void {

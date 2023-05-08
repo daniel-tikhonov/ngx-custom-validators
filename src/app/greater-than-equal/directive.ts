@@ -14,12 +14,15 @@ const GREATER_THAN_EQUAL_VALIDATOR: any = {
   providers: [GREATER_THAN_EQUAL_VALIDATOR]
 })
 export class GreaterThanEqualValidator implements Validator, OnInit, OnChanges {
-  @Input() gte: number;
+  @Input() gte?: number;
 
-  private validator: ValidatorFn;
-  private onChange: () => void;
+  private validator?: ValidatorFn;
+  private onChange?: () => void;
 
   ngOnInit() {
+    if (this.gte === undefined) {
+      throw new Error('Gte input required.');
+    }
     this.validator = gte(this.gte);
   }
 
@@ -34,8 +37,8 @@ export class GreaterThanEqualValidator implements Validator, OnInit, OnChanges {
     }
   }
 
-  validate(c: AbstractControl): {[key: string]: any} {
-    return this.validator(c);
+  validate(c: AbstractControl): {[key: string]: any} | null {
+    return this.validator ? this.validator(c): null;
   }
 
   registerOnValidatorChange(fn: () => void): void {

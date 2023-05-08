@@ -14,12 +14,15 @@ const GREATER_THAN_VALIDATOR: any = {
   providers: [GREATER_THAN_VALIDATOR]
 })
 export class GreaterThanValidator implements Validator, OnInit, OnChanges {
-  @Input() gt: number;
+  @Input() gt?: number;
 
-  private validator: ValidatorFn;
-  private onChange: () => void;
+  private validator?: ValidatorFn;
+  private onChange?: () => void;
 
   ngOnInit() {
+    if (this.gt === undefined) {
+      throw new Error('Gt input required.');
+    }
     this.validator = gt(this.gt);
   }
 
@@ -34,8 +37,8 @@ export class GreaterThanValidator implements Validator, OnInit, OnChanges {
     }
   }
 
-  validate(c: AbstractControl): {[key: string]: any} {
-    return this.validator(c);
+  validate(c: AbstractControl): {[key: string]: any} | null {
+    return this.validator ? this.validator(c): null;
   }
 
   registerOnValidatorChange(fn: () => void): void {

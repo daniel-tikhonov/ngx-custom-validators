@@ -2,15 +2,15 @@ import { AbstractControl, FormControl, NgModel, ValidationErrors, ValidatorFn, V
 import { isDate, isPresent, parseDate } from '../util/lang';
 
 export const minDate = (minInput: any): ValidatorFn => {
-  let value;
+  let value: any;
   let subscribe = false;
   let minValue = minInput;
   const isForm = minInput instanceof FormControl || minInput instanceof NgModel;
-  return (control: AbstractControl): ValidationErrors => {
+  return (control: AbstractControl): ValidationErrors | null => {
 
     if (!subscribe && isForm) {
       subscribe = true;
-      minInput.valueChanges.subscribe(() => {
+      minInput.valueChanges?.subscribe(() => {
         control.updateValueAndValidity();
       });
     }

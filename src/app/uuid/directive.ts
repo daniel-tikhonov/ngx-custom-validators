@@ -14,10 +14,10 @@ const UUID_VALIDATOR: any = {
   providers: [UUID_VALIDATOR]
 })
 export class UUIDValidator implements Validator, OnInit, OnChanges {
-  @Input() uuid;
+  @Input() uuid: any;
 
-  private validator: ValidatorFn;
-  private onChange: () => void;
+  private validator?: ValidatorFn;
+  private onChange?: () => void;
 
   ngOnInit() {
     this.validator = uuid(this.uuid);
@@ -34,8 +34,8 @@ export class UUIDValidator implements Validator, OnInit, OnChanges {
     }
   }
 
-  validate(c: AbstractControl): {[key: string]: any} {
-    return this.validator(c);
+  validate(c: AbstractControl): {[key: string]: any}|null {
+    return this.validator ? this.validator(c): null;
   }
 
   registerOnValidatorChange(fn: () => void): void {

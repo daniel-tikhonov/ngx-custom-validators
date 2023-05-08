@@ -2,7 +2,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn, Validators } from '@ang
 import { isPresent } from '../util/lang';
 
 // tslint:disable-next-line:variable-name
-export const number: ValidatorFn = (control: AbstractControl): ValidationErrors => {
+export const number: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   if (isPresent(Validators.required(control))) {
     return null;
   }

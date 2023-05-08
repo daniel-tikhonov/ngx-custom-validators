@@ -14,15 +14,18 @@ const EQUAL_TO_VALIDATOR: any = {
   providers: [EQUAL_TO_VALIDATOR]
 })
 export class EqualToValidator implements Validator, OnInit {
-  @Input() equalTo: FormControl;
+  @Input() equalTo?: FormControl;
 
-  private validator: ValidatorFn;
+  private validator?: ValidatorFn;
 
   ngOnInit() {
+    if (!this.equalTo) {
+      throw new Error('Equal to input required.');
+    }
     this.validator = equalTo(this.equalTo);
   }
 
-  validate(c: AbstractControl): {[key: string]: any} {
-    return this.validator(c);
+  validate(c: AbstractControl): {[key: string]: any} | null {
+    return this.validator ? this.validator(c): null;
   }
 }

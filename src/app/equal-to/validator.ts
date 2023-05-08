@@ -3,7 +3,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 export const equalTo = (equalControl: AbstractControl): ValidatorFn => {
   let subscribe = false;
 
-  return (control: AbstractControl): ValidationErrors => {
+  return (control: AbstractControl): ValidationErrors | null => {
     if (!subscribe) {
       subscribe = true;
       equalControl.valueChanges.subscribe(() => {

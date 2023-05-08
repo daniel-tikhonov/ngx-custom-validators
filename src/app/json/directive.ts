@@ -14,7 +14,7 @@ const JSON_VALIDATOR: any = {
   providers: [JSON_VALIDATOR]
 })
 export class JSONValidator implements Validator {
-  validate(c: AbstractControl): {[key: string]: any} {
+  validate(c: AbstractControl): {[key: string]: any} | null {
     return json(c);
   }
 }

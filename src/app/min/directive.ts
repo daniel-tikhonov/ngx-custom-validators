@@ -14,12 +14,15 @@ const MIN_VALIDATOR: any = {
   providers: [MIN_VALIDATOR]
 })
 export class MinValidator implements Validator, OnInit, OnChanges {
-  @Input() min: number;
+  @Input() min?: number;
 
-  private validator: ValidatorFn;
-  private onChange: () => void;
+  private validator?: ValidatorFn;
+  private onChange?: () => void;
 
   ngOnInit() {
+    if (this.min === undefined) {
+      throw new Error('Min input required.');
+    }
     this.validator = min(this.min);
   }
 
@@ -34,8 +37,8 @@ export class MinValidator implements Validator, OnInit, OnChanges {
     }
   }
 
-  validate(c: AbstractControl): {[key: string]: any} {
-    return this.validator(c);
+  validate(c: AbstractControl): {[key: string]: any}| null {
+    return this.validator ? this.validator(c): null;
   }
 
   registerOnValidatorChange(fn: () => void): void {

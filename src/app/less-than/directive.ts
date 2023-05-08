@@ -14,12 +14,15 @@ const LESS_THAN_VALIDATOR: any = {
   providers: [LESS_THAN_VALIDATOR]
 })
 export class LessThanValidator implements Validator, OnInit, OnChanges {
-  @Input() lt: number;
+  @Input() lt?: number;
 
-  private validator: ValidatorFn;
-  private onChange: () => void;
+  private validator?: ValidatorFn;
+  private onChange?: () => void;
 
   ngOnInit() {
+    if (this.lt === undefined) {
+      throw new Error('Lt input required.');
+    }
     this.validator = lt(this.lt);
   }
 
@@ -34,8 +37,8 @@ export class LessThanValidator implements Validator, OnInit, OnChanges {
     }
   }
 
-  validate(c: AbstractControl): {[key: string]: any} {
-    return this.validator(c);
+  validate(c: AbstractControl): {[key: string]: any}| null {
+    return this.validator ? this.validator(c): null;
   }
 
   registerOnValidatorChange(fn: () => void): void {

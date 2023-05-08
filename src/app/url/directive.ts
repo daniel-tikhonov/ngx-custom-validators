@@ -14,7 +14,7 @@ const URL_VALIDATOR: any = {
   providers: [URL_VALIDATOR]
 })
 export class UrlValidator implements Validator {
-  validate(c: AbstractControl): {[key: string]: any} {
+  validate(c: AbstractControl): {[key: string]: any} | null {
     return url(c);
   }
 }

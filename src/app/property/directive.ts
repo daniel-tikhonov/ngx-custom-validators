@@ -14,12 +14,15 @@ const PROPERTY_VALIDATOR: any = {
   providers: [PROPERTY_VALIDATOR]
 })
 export class PropertyValidator implements Validator, OnInit, OnChanges {
-  @Input() property: string;
+  @Input() property?: string;
 
-  private validator: ValidatorFn;
-  private onChange: () => void;
+  private validator?: ValidatorFn;
+  private onChange?: () => void;
 
   ngOnInit() {
+    if (this.property === undefined) {
+      throw new Error('Property input required.');
+    }
     this.validator = property(this.property);
   }
 
@@ -34,8 +37,8 @@ export class PropertyValidator implements Validator, OnInit, OnChanges {
     }
   }
 
-  validate(c: AbstractControl): {[key: string]: any} {
-    return this.validator(c);
+  validate(c: AbstractControl): {[key: string]: any}| null {
+    return this.validator ? this.validator(c): null;
   }
 
   registerOnValidatorChange(fn: () => void): void {

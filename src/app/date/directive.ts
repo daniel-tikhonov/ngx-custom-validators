@@ -14,7 +14,7 @@ const DATE_VALIDATOR: any = {
   providers: [DATE_VALIDATOR]
 })
 export class DateValidator implements Validator {
-  validate(c: AbstractControl): {[key: string]: any} {
+  validate(c: AbstractControl): {[key: string]: any} | null {
     return date(c);
   }
 }

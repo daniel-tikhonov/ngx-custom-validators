@@ -14,15 +14,18 @@ const NOT_EQUAL_TO_VALIDATOR: any = {
   providers: [NOT_EQUAL_TO_VALIDATOR]
 })
 export class NotEqualToValidator implements Validator, OnInit {
-  @Input() notEqualTo: FormControl;
+  @Input() notEqualTo?: FormControl;
 
-  private validator: ValidatorFn;
+  private validator?: ValidatorFn;
 
   ngOnInit() {
+    if (this.notEqualTo === undefined) {
+      throw new Error('Not equal to input required.');
+    }
     this.validator = notEqualTo(this.notEqualTo);
   }
 
-  validate(c: AbstractControl): {[key: string]: any} {
-    return this.validator(c);
+  validate(c: AbstractControl): {[key: string]: any}| null {
+    return this.validator ? this.validator(c): null;
   }
 }

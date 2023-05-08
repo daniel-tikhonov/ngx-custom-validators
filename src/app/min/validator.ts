@@ -2,7 +2,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn, Validators } from '@ang
 import { isPresent } from '../util/lang';
 
 export const min = (value: number): ValidatorFn => {
-  return (control: AbstractControl): ValidationErrors => {
+  return (control: AbstractControl): ValidationErrors | null => {
     if (!isPresent(value)) {
       return null;
     }
