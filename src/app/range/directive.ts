@@ -14,7 +14,7 @@ const RANGE_VALIDATOR: any = {
   providers: [RANGE_VALIDATOR]
 })
 export class RangeValidator implements Validator, OnInit, OnChanges {
-  @Input() range?: [number];
+  @Input() range?: number[];
 
   private validator?: ValidatorFn;
   private onChange?: () => void;

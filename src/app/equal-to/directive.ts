@@ -1,5 +1,5 @@
 import { Directive, Input, forwardRef, OnInit } from '@angular/core';
-import { NG_VALIDATORS, Validator, FormControl, ValidatorFn, AbstractControl } from '@angular/forms';
+import { NG_VALIDATORS, Validator, FormControl, ValidatorFn, AbstractControl, NgModel } from '@angular/forms';
 
 import { equalTo } from './validator';
 
@@ -14,7 +14,7 @@ const EQUAL_TO_VALIDATOR: any = {
   providers: [EQUAL_TO_VALIDATOR]
 })
 export class EqualToValidator implements Validator, OnInit {
-  @Input() equalTo?: FormControl;
+  @Input() equalTo?: NgModel;
 
   private validator?: ValidatorFn;
 
@@ -22,7 +22,7 @@ export class EqualToValidator implements Validator, OnInit {
     if (!this.equalTo) {
       throw new Error('Equal to input required.');
     }
-    this.validator = equalTo(this.equalTo);
+    this.validator = equalTo(this.equalTo.control);
   }
 
   validate(c: AbstractControl): {[key: string]: any} | null {

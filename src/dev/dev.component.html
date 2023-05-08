@@ -5,7 +5,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="requried" #requried="ngModel" required>
-          <p class="alert alert-danger" *ngIf="requried?.errors?.required">required error</p>
+          <p class="alert alert-danger" *ngIf="requried?.errors?.['required']">required error</p>
         </div>
       </div>
   
@@ -14,7 +14,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="minlength" #minlength="ngModel" minlength="5">
-          <p class="alert alert-danger" *ngIf="minlength?.errors?.minlength">minlength error</p>
+          <p class="alert alert-danger" *ngIf="minlength?.errors?.['minlength']">minlength error</p>
         </div>
       </div>
   
@@ -23,7 +23,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="maxlength" #maxlength="ngModel" maxlength="5">
-          <p class="alert alert-danger" *ngIf="maxlength?.errors?.maxlength">maxlength error</p>
+          <p class="alert alert-danger" *ngIf="maxlength?.errors?.['maxlength']">maxlength error</p>
         </div>
       </div>
   
@@ -32,7 +32,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="pattern" #pattern="ngModel" pattern="[a-z]{6}">
-          <p class="alert alert-danger" *ngIf="pattern?.errors?.pattern">pattern error</p>
+          <p class="alert alert-danger" *ngIf="pattern?.errors?.['pattern']">pattern error</p>
         </div>
       </div>
   
@@ -41,7 +41,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="base64" #base64="ngModel" base64>
-          <p class="alert alert-danger" *ngIf="base64?.errors?.base64">base64 error</p>
+          <p class="alert alert-danger" *ngIf="base64?.errors?.['base64']">base64 error</p>
         </div>
       </div>
   
@@ -50,7 +50,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="creditCard" #creditCard="ngModel" creditCard>
-          <p class="alert alert-danger" *ngIf="creditCard?.errors?.creditCard">creditCard error</p>
+          <p class="alert alert-danger" *ngIf="creditCard?.errors?.['creditCard']">creditCard error</p>
         </div>
       </div>
   
@@ -59,7 +59,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="date" #date="ngModel" date>
-          <p class="alert alert-danger" *ngIf="date?.errors?.date">date error</p>
+          <p class="alert alert-danger" *ngIf="date?.errors?.['date']">date error</p>
         </div>
       </div>
   
@@ -68,7 +68,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="dateISO" #dateISO="ngModel" dateISO>
-          <p class="alert alert-danger" *ngIf="dateISO?.errors?.dateISO">dateISO error</p>
+          <p class="alert alert-danger" *ngIf="dateISO?.errors?.['dateISO']">dateISO error</p>
         </div>
       </div>
   
@@ -77,7 +77,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="maxDate" #maxDate="ngModel" [maxDate]="date">
-          <p class="alert alert-danger" *ngIf="maxDate?.errors?.maxDate">maxDate error</p>
+          <p class="alert alert-danger" *ngIf="maxDate?.errors?.['maxDate']">maxDate error</p>
         </div>
       </div>
   
@@ -86,7 +86,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="minDate" #minDate="ngModel" [minDate]="dateTest">
-          <p class="alert alert-danger" *ngIf="minDate?.errors?.minDate">minDate error</p>
+          <p class="alert alert-danger" *ngIf="minDate?.errors?.['minDate']">minDate error</p>
         </div>
       </div>
   
@@ -95,7 +95,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="digits" #digits="ngModel" digits>
-          <p class="alert alert-danger" *ngIf="digits?.errors?.digits">digits error</p>
+          <p class="alert alert-danger" *ngIf="digits?.errors?.['digits']">digits error</p>
         </div>
       </div>
   
@@ -104,7 +104,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="email" #email="ngModel" ngvemail>
-          <p class="alert alert-danger" *ngIf="email?.errors?.email">email error</p>
+          <p class="alert alert-danger" *ngIf="email?.errors?.['email']">email error</p>
         </div>
       </div>
   
@@ -113,7 +113,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="equal" #equal="ngModel" equal="aabbcc">
-          <p class="alert alert-danger" *ngIf="equal?.errors?.equal">equal error</p>
+          <p class="alert alert-danger" *ngIf="equal?.errors?.['equal']">equal error</p>
         </div>
       </div>
   
@@ -122,7 +122,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="notEqual" #notEqual="ngModel" notEqual="aabbcc">
-          <p class="alert alert-danger" *ngIf="notEqual?.errors?.notEqual">notEqual error</p>
+          <p class="alert alert-danger" *ngIf="notEqual?.errors?.['notEqual']">notEqual error</p>
         </div>
       </div>
   
@@ -132,7 +132,7 @@
         <div class="col-9">
           <input type="text" ngModel name="password" #password="ngModel">
           <input type="text" ngModel name="equalTo" #equalTo="ngModel" [equalTo]="password">
-          <p class="alert alert-danger" *ngIf="equalTo?.errors?.equalTo">equalTo error</p>
+          <p class="alert alert-danger" *ngIf="equalTo?.errors?.['equalTo']">equalTo error</p>
         </div>
       </div>
   
@@ -142,7 +142,7 @@
         <div class="col-9">
           <input type="text" ngModel name="oldPassword" #oldPassword="ngModel">
           <input type="text" ngModel name="notEqualTo" #notEqualTo="ngModel" [notEqualTo]="oldPassword">
-          <p class="alert alert-danger" *ngIf="notEqualTo?.errors?.notEqualTo">notEqualTo error</p>
+          <p class="alert alert-danger" *ngIf="notEqualTo?.errors?.['notEqualTo']">notEqualTo error</p>
         </div>
       </div>
   
@@ -150,8 +150,8 @@
         <label class="col-3">greater than</label>
   
         <div class="col-9">
-          <input type="text" ngModel name="gt" #gt="ngModel" gt="10">
-          <p class="alert alert-danger" *ngIf="gt?.errors?.gt">greater than error</p>
+          <input type="text" ngModel name="gt" #gt="ngModel" [gt]="10">
+          <p class="alert alert-danger" *ngIf="gt?.errors?.['gt']">greater than error</p>
         </div>
       </div>
   
@@ -159,8 +159,8 @@
         <label class="col-3">greater than equal</label>
   
         <div class="col-9">
-          <input type="text" ngModel name="gte" #gte="ngModel" gte="10">
-          <p class="alert alert-danger" *ngIf="gte?.errors?.gte">greater than equal error</p>
+          <input type="text" ngModel name="gte" #gte="ngModel" [gte]="10">
+          <p class="alert alert-danger" *ngIf="gte?.errors?.['gte']">greater than equal error</p>
         </div>
       </div>
   
@@ -168,8 +168,8 @@
         <label class="col-3">less than</label>
   
         <div class="col-9">
-          <input type="text" ngModel name="lt" #lt="ngModel" lt="5">
-          <p class="alert alert-danger" *ngIf="lt?.errors?.lt">less than error</p>
+          <input type="text" ngModel name="lt" #lt="ngModel" [lt]="5">
+          <p class="alert alert-danger" *ngIf="lt?.errors?.['lt']">less than error</p>
         </div>
       </div>
   
@@ -177,8 +177,8 @@
         <label class="col-3">less than equal</label>
   
         <div class="col-9">
-          <input type="text" ngModel name="lte" #lte="ngModel" lte="5">
-          <p class="alert alert-danger" *ngIf="lte?.errors?.lte">less than equal error</p>
+          <input type="text" ngModel name="lte" #lte="ngModel" [lte]="5">
+          <p class="alert alert-danger" *ngIf="lte?.errors?.['lte']">less than equal error</p>
         </div>
       </div>
   
@@ -187,7 +187,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="json" #json="ngModel" json>
-          <p class="alert alert-danger" *ngIf="json?.errors?.json">json error</p>
+          <p class="alert alert-danger" *ngIf="json?.errors?.['json']">json error</p>
         </div>
       </div>
   
@@ -195,8 +195,8 @@
         <label class="col-3">max</label>
   
         <div class="col-9">
-          <input type="text" ngModel name="max" #max="ngModel" max="5">
-          <p class="alert alert-danger" *ngIf="max?.errors?.max">max error</p>
+          <input type="text" ngModel name="max" #max="ngModel" [max]="5">
+          <p class="alert alert-danger" *ngIf="max?.errors?.['max']">max error</p>
         </div>
       </div>
   
@@ -204,8 +204,8 @@
         <label class="col-3">min</label>
   
         <div class="col-9">
-          <input type="text" ngModel name="min" #min="ngModel" min="5">
-          <p class="alert alert-danger" *ngIf="min?.errors?.min">min error</p>
+          <input type="text" ngModel name="min" #min="ngModel" [min]="5">
+          <p class="alert alert-danger" *ngIf="min?.errors?.['min']">min error</p>
         </div>
       </div>
   
@@ -214,7 +214,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="number" #number="ngModel" number>
-          <p class="alert alert-danger" *ngIf="number?.errors?.number">number error</p>
+          <p class="alert alert-danger" *ngIf="number?.errors?.['number']">number error</p>
         </div>
       </div>
   
@@ -223,7 +223,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="phone" #phone="ngModel" phone>
-          <p class="alert alert-danger" *ngIf="phone?.errors?.phone">phone error</p>
+          <p class="alert alert-danger" *ngIf="phone?.errors?.['phone']">phone error</p>
         </div>
       </div>
 
@@ -232,7 +232,7 @@
   
         <div class="col-9">
           <input type="text" [(ngModel)]="objProperty" name="property" #property="ngModel" property="id">
-          <p class="alert alert-danger" *ngIf="property?.errors?.property">property error</p>
+          <p class="alert alert-danger" *ngIf="property?.errors?.['property']">property error</p>
         </div>
       </div>
   
@@ -241,7 +241,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="range" #range="ngModel" [range]="[4,9]">
-          <p class="alert alert-danger" *ngIf="range?.errors?.range">range error</p>
+          <p class="alert alert-danger" *ngIf="range?.errors?.['range']">range error</p>
         </div>
       </div>
   
@@ -250,7 +250,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="rangeLength" #rangeLength="ngModel" [rangeLength]="[4,9]">
-          <p class="alert alert-danger" *ngIf="rangeLength?.errors?.rangeLength">rangeLength error</p>
+          <p class="alert alert-danger" *ngIf="rangeLength?.errors?.['rangeLength']">rangeLength error</p>
         </div>
       </div>
   
@@ -259,7 +259,7 @@
   
         <div class="col-9">
           <input type="text" ngModel name="url" #url="ngModel" url>
-          <p class="alert alert-danger" *ngIf="url?.errors?.url">url error</p>
+          <p class="alert alert-danger" *ngIf="url?.errors?.['url']">url error</p>
         </div>
       </div>
   
@@ -268,15 +268,15 @@
   
         <div class="col-9">
           <input type="text" ngModel name="uuid" #uuid="ngModel" uuid="3">
-          <p class="alert alert-danger" *ngIf="uuid?.errors?.uuid">uuid error</p>
+          <p class="alert alert-danger" *ngIf="uuid?.errors?.['uuid']">uuid error</p>
         </div>
       </div>
 
       <div>
         <label class="col-3">arrayLength</label>
         <div class="col-9">
-          <input type="text" [(ngModel)]="arrayLengthTest" name="arrayLength" #arrayLength="ngModel" arrayLength="2">
-          <p class="alert alert-danger" *ngIf="arrayLength?.errors?.arrayLength">arrayLength error</p>
+          <input type="text" [(ngModel)]="arrayLengthTest" name="arrayLength" #arrayLength="ngModel" [arrayLength]="2">
+          <p class="alert alert-danger" *ngIf="arrayLength?.errors?.['arrayLength']">arrayLength error</p>
         </div>
       </div>
     </form>

@@ -8,7 +8,7 @@ import { CustomValidators } from '../app/custom-forms.module';
   styleUrls: ['dev.component.scss']
 })
 export class DevComponent implements OnInit {
-  public form: FormGroup;
+  public form?: FormGroup;
   public num = 5;
   public arrayLengthTest = ['ok'];
   public dateTest = { year: 2017, month: 10, day: 12 };
@@ -24,7 +24,7 @@ export class DevComponent implements OnInit {
     });
   }
 
-  onSubmit(form) {
+  onSubmit(form: FormGroup) {
     console.log(form);
   }
 }

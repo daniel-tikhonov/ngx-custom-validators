@@ -127,3 +127,33 @@ const CustomDirectives = [
   exports: [CustomDirectives]
 })
 export class CustomFormsModule { }
+
+export {ArrayLengthValidator} from './array-length/directive';
+export {Base64Validator} from './base64/directive';
+export {CreditCardValidator} from './credit-card/directive';
+export {DateISOValidator} from './date-iso/directive';
+export {DateValidator} from './date/directive';
+export {DigitsValidator} from './digits/directive';
+export {EmailValidator} from './email/directive';
+export {EqualToValidator} from './equal-to/directive';
+export {EqualValidator} from './equal/directive';
+export {GreaterThanEqualValidator} from './greater-than-equal/directive';
+export {GreaterThanValidator} from './greater-than/directive';
+export {IncludedInValidator} from './included-in/directive';
+export {JSONValidator} from './json/directive';
+export {LessThanEqualValidator} from './less-than-equal/directive';
+export {LessThanValidator} from './less-than/directive';
+export {MaxDateValidator} from './max-date/directive';
+export {MaxValidator} from './max/directive';
+export {MinDateValidator} from './min-date/directive';
+export {MinValidator} from './min/directive';
+export {NotEqualToValidator} from './not-equal-to/directive';
+export {NotEqualValidator} from './not-equal/directive';
+export {NotIncludedInValidator} from './not-included-in/directive';
+export {NotMatchingValidator} from './not-matching/directive';
+export {NumberValidator} from './number/directive';
+export {PropertyValidator} from './property/directive';
+export {RangeLengthValidator} from './range-length/directive';
+export {RangeValidator} from './range/directive';
+export {UrlValidator} from './url/directive';
+export {UUIDValidator} from './uuid/directive';
